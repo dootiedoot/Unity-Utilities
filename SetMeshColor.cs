@@ -6,13 +6,20 @@ public class SetMeshColor : MonoBehaviour
 {
     public Color color = Color.white;
     public bool randomColor = false;
+    public bool setOnStart = false;
+    public bool updateChildren = true;
+    public bool updateSelf = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        SetColor();
+        if (setOnStart)
+        {
+           SetColor();
+        }
     }
 
+    [ContextMenu(nameof(SetColor))]
     private void SetColor()
     {
         if (randomColor)
@@ -20,21 +27,28 @@ public class SetMeshColor : MonoBehaviour
             color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
         }
 
+        //  specific to Unity's URP
         MaterialPropertyBlock properties = new MaterialPropertyBlock();
         properties.SetColor("_BaseColor", color);
 
-        //  parent
-        MeshRenderer thisRend = GetComponent<MeshRenderer>();
-        if (thisRend)
+        //  self
+        if (updateSelf)
         {
-            thisRend.SetPropertyBlock(properties);
+            MeshRenderer thisRend = GetComponent<MeshRenderer>();
+            if (thisRend)
+            {
+                thisRend.SetPropertyBlock(properties);
+            }
         }
 
         //  children
-        MeshRenderer[] childRenderers = GetComponentsInChildren<MeshRenderer>();
-        foreach (var childRend in childRenderers)
+        if (updateChildren)
         {
-            childRend.SetPropertyBlock(properties);
+            MeshRenderer[] childRenderers = GetComponentsInChildren<MeshRenderer>();
+            foreach (var childRend in childRenderers)
+            {
+                childRend.SetPropertyBlock(properties);
+            }
         }
     }
 }
