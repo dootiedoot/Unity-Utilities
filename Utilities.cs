@@ -107,7 +107,8 @@ namespace doot
             transform.localScale = new Vector3(globalScale.x / transform.lossyScale.x, globalScale.y / transform.lossyScale.y, globalScale.z / transform.lossyScale.z);
         }
 
-        //  EDITOR ONLY! This finds all scriptable objects in project and returns a array of them. SomeScriptableObject[] items = GetAllScriptableObjects<SomeScriptableObject>();
+        //  CALL IN EDITOR ONLY! This finds all scriptable objects of specific in project and returns a array of them. 
+        //  Ex.) SomeScriptableObject[] items = GetAllScriptableObjects<SomeScriptableObject>();
         public static T[] GetScriptableObjectsInProject<T>() where T : ScriptableObject
         {
             string[] guids = AssetDatabase.FindAssets("t:" + typeof(T).Name);  //FindAssets uses tags check documentation for more info

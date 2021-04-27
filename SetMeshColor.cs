@@ -6,7 +6,7 @@ public class SetMeshColor : MonoBehaviour
 {
     public Color color = Color.white;
     public bool randomColor = false;
-    public bool setOnStart = false;
+    public bool setOnStart = true;
     public bool updateChildren = true;
     public bool updateSelf = true;
 
