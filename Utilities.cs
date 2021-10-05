@@ -484,13 +484,13 @@ namespace doot
         public const int AStar_Ground = 0;
         public const int AStar_Road = 1;
         public const int AStar_Building = 2;
-        public const int AStar_resource = 3;
+        public const int AStar_Resource = 3;
 
         //  A* Pathfinding specific tag path masks
         public const int AStar_Ground_Mask = 1 << AStar_Ground;
         public const int AStar_Road_Mask = 1 << AStar_Road;
         public const int AStar_Building_Mask = 1 << AStar_Building;
-        public const int AStar_Resource_Mask = 1 << AStar_resource;
+        public const int AStar_Resource_Mask = 1 << AStar_Resource;
     }
 
     public static class Layers
