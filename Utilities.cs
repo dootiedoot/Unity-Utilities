@@ -458,6 +458,19 @@ namespace doot
             //return count;
             return newPoints.ToArray();
         }
+
+        #region Get positions on perimeter of circle
+        public static Vector3[] GetPointsOnCircle(Vector3 initialPosition, float radius, int amountOfPoints)
+        {
+            Vector3[] points = new Vector3[amountOfPoints];
+            for (int i = 0; i < amountOfPoints; i++)
+            {
+                float angle = i * Mathf.PI * 2f / amountOfPoints;
+                points[i] = initialPosition + new Vector3(Mathf.Cos(angle) * radius, 0, Mathf.Sin(angle) * radius);
+            }
+            return points;
+        }
+        #endregion
     }
 
     public static class Scenes
